@@ -169,7 +169,7 @@ function buscarUsuarios(): ApiResponse<Usuario[]> {
     console.log(buscarUsuarios()); 
 */
 
-/* import { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 interface Tarefa {
@@ -194,4 +194,35 @@ export default function ListaTarefas({
     if (filtro === "concluidas") return tarefa.concluida;
     return true;
   });
-} */
+  
+  return (
+    <View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', gap: 8}}>
+            <TouchableOpacity onPress={() => setFiltro("todas")}>
+                <Text>Todas</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setFiltro("pendentes")}>
+                <Text>Pendentes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setFiltro("concluidas")}>
+                <Text>Concluídas</Text>
+            </TouchableOpacity>
+        </View>
+        {tarefasFiltradas.map(tarefa => (
+            <TouchableOpacity 
+            key={tarefa.id} 
+            onPress={() => onToggle(tarefa.id)}
+            >
+                <Text 
+                    style={{ textDecorationLine: 
+                    tarefa.concluida ? 'line-through' : 'none' }}
+                >
+                    {tarefa.concluida ? "✓ " : "✗ "}
+                    {tarefa.titulo}
+                </Text>
+            </TouchableOpacity>
+        ))}
+    </View>
+
+  )
+} 
