@@ -90,3 +90,108 @@ function filtrarPares(
 }
     console.log(filtrarPares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
  */
+
+
+/* type UnidadeTemperatura = "celsius" | "fahrenheit";
+
+function converterTemperatura(
+  valor: number,
+  unidade: UnidadeTemperatura
+): number {
+  if (unidade === "celsius") {
+    return (valor * 9 / 5) + 32;
+  }
+
+  // Aqui já sabemos que só pode ser "fahrenheit"
+  return (valor - 32) * 5 / 9;
+}
+
+    console.log(converterTemperatura(25, "celsius"))
+    console.log(converterTemperatura(77, "fahrenheit")) 
+*/
+
+/* function contarOcorrencias<T>(
+  array: T[],
+  elemento: T
+): number {
+    return array.reduce((contador, item) => {
+        return item === elemento ? contador + 1 : contador;
+    }, 0);
+}
+    console.log(contarOcorrencias([1, 2, 3, 4, 2, 5, 2], 2))
+    console.log(contarOcorrencias(["maçã", "banana", "laranja", "maçã"], "maçã"))
+     */
+
+/* interface Aluno {
+    nome: string,
+    notas: number[],
+    matricula: string;
+}
+
+function calcularMedia(aluno: Aluno): number {
+  // Implemente aqui
+  const soma = aluno.notas.reduce((acc, nota) => acc + nota, 0);
+  return soma / aluno.notas.length;
+}
+
+const aluno1: Aluno = {
+    nome: "João Vitor",
+    notas: [8, 7, 9],
+    matricula: "2023001"
+};
+    console.log(calcularMedia(aluno1)); 
+*/
+
+/* type ApiResponse<T> = {
+    sucesso: boolean;
+    dados: T | null;
+    erro: string | null;
+};
+
+interface Usuario {
+  id: number, 
+  nome: string,
+  email: string;
+}
+
+function buscarUsuarios(): ApiResponse<Usuario[]> {
+  // Retorne dados mockados
+    const usuarios: Usuario[] = [
+        { id: 1, nome: "João Vitor", email: "joao.vitor@example.com" },
+        { id: 2, nome: "Maria Silva", email: "maria.silva@example.com" }
+    ];
+    return {
+        sucesso: true,
+        dados: usuarios,
+        erro: null
+    };
+}
+    console.log(buscarUsuarios()); 
+*/
+
+/* import { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+interface Tarefa {
+  id: number,
+  titulo: string,
+  concluida: boolean;
+}
+
+interface ListaTarefasProps {
+  tarefas: Tarefa[],
+  onToggle: (id: number) => void;
+}
+
+export default function ListaTarefas({
+  tarefas, onToggle 
+}: ListaTarefasProps) {
+  const [filtro, setFiltro] =
+    useState<"todas" | "pendentes" | "concluidas">("todas");  
+  const tarefasFiltradas = tarefas.filter(tarefa => {
+    if (filtro === "todas") return true;
+    if (filtro === "pendentes") return !tarefa.concluida;
+    if (filtro === "concluidas") return tarefa.concluida;
+    return true;
+  });
+} */
