@@ -1,39 +1,85 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import CardComponent from './components/CardComponent';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import { IMCResult } from './components/IMCResult';
+import { calcularIMC } from './feat/calcularIMC';
 
-export default function App() {
-  const [count, setCount] = useState<number | null>(null)
+type IMC = {
+  peso: number;
+  altura: number;
+  calculo: number;
+}
 
-  function handleCount() {
-    // setCount(c => c + 1)
-    const value = count ? count : 0
-    setCount(value + 1)
+export function App() {
+  const [imc, setIMC] = useState<IMC>({
+    peso: 0,
+    altura: 0,
+    calculo: 0
+  });
+
+  function handleChangeTextIMC([key]: [keyof IMC], value: string) {
+    setIMC((currentState) => ({
+      ...currentState,
+      [key]: Number(value)
+    }))
   }
 
+  function handleCalculateIMC() {
+    if (imc.peso === 0 || imc.altura === 0) return;
+    const imcCalculado = calcularIMC(imc.peso, imc.altura);
+    handleChangeTextIMC(['calculo'], String(imcCalculado))
+  }
+
+  useEffect(() => {
+    handleCalculateIMC()
+  }, [imc.altura, imc.peso])
+
+  useEffect(() => {
+    alert('Bem-vindo ao calculador de IMC!')
+    return () => {
+      alert('Obrigado por usar o calculador de IMC!')
+    }
+  }, [])
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text>Peso: {imc.peso}</Text>
+        <TextInput
+          placeholder="Digite seu peso"
+          keyboardType="numeric"
+          style={styles.inputText}
+          onChangeText={(text: string) => handleChangeTextIMC(['peso'], text)}
+        />
+      </View>
+      <View>
+        <Text>Altura: {imc.altura}</Text>
+        <TextInput
+          placeholder="Digite sua altura"
+          keyboardType="numeric"
+          style={styles.inputText}
+          onChangeText={(text: string) => handleChangeTextIMC(['altura'], text)}
+        />
+      </View>
 
-      <StatusBar style="auto" />
+      <View style={{
+        marginBottom: 16,
+        width: 300,
+      }}>
+        <Text>Seu IMC é: {imc.calculo.toFixed(2)}</Text>
+        <IMCResult imc={imc.calculo} />
+      </View>
 
-      <CardComponent
-        nome="Brendo Vale"
-        email="brendo@univag.edu.br"
-        idade={99}
-        avatar="https://github.com/bvaledev.png"
-      >
-        <Text>{count}</Text>
-      </CardComponent>
-
-
-
-      <TouchableOpacity onPress={handleCount}>
-        <Text>Clique aqui, não é vírus</Text>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.buttonContainer}
+        onPress={handleCalculateIMC}>
+        <Text style={styles.buttonText}>
+          Calcular IMC
+        </Text>
       </TouchableOpacity>
-
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -44,5 +90,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    backgroundColor: '#263e85',
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  inputText: {
+    borderWidth: 1,
+    borderColor: '#bec2d0',
+    borderRadius: 8,
+    padding: 8,
+    marginBottom: 16,
+    width: 300,
   },
 });
