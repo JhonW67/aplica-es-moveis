@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { THEME } from "../../styles/constant";
 
-export const styles = StyleSheet.create({
+const stylesPrimary = StyleSheet.create({
     buttonContainer: {
         backgroundColor: THEME.colors.primary,
         justifyContent: "center",
@@ -15,5 +15,35 @@ export const styles = StyleSheet.create({
          color: THEME.colors.primaryForeground,
         fontWeight: "500",
         fontSize: 18
-    },   
+    },
+    
 })
+
+const stylesSecondary = StyleSheet.create({
+    buttonContainer: {
+       ...stylesPrimary.buttonContainer,
+       backgroundColor: "transparent",
+    },
+    buttonText: {
+       ...stylesPrimary.buttonText,
+        color: THEME.colors.primary
+    }
+})
+
+const stylesOutline = StyleSheet.create({
+    buttonContainer: {
+        ...stylesPrimary.buttonContainer,
+        
+
+    },
+    buttonText: {
+        ...stylesPrimary.buttonText,
+        color: THEME.colors.primary,
+    }
+})
+
+export const styles ={
+    primary: stylesPrimary,
+    secondary: stylesSecondary,
+    outline: stylesOutline
+} as const

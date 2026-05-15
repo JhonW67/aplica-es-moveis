@@ -1,12 +1,27 @@
-import { Text, View } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { Button } from '../components/Buttons/index';
+import { Title } from "../components/Texts/title";    
+import { Subtitle } from "../components/Texts/subtitle";
+import { SuccessIcon } from "../components/Icons/success";
+import { Container } from "../components/Containers/container";
+import { HeaderContainer } from "../components/Containers/headerContainer";
+import { FooterContainer } from "../components/Containers/footerContainer";
 
 export default function SucessoScreen(){
     return(
         <SafeAreaView>
-            <View>
-                <Text>Sucesso Screen</Text>
-            </View>
+            <Container>
+                <HeaderContainer>
+                    <SuccessIcon />
+                    <Title label="Cartão criado com sucesso!" />
+                    <Subtitle label="Seu cartão de visita digital está pronto. Compartilhe com a galera!" />
+                </HeaderContainer>
+                <FooterContainer>
+                    <Button label="Criar outro cartão"/>
+                    <Button label="voltar para o início" variant="secondary"/>
+                </FooterContainer>
+            </Container>
         </SafeAreaView>
     )
 }
