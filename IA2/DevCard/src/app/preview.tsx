@@ -71,20 +71,20 @@ export default function PreviewScreen() {
           <CardBadgeContainer>
             <CardBadgeText label={nivel} />
           </CardBadgeContainer>
-          <CardSubtitle label={params.anos || "3"} />
+          <CardSubtitle label={params.anos || "0"} definition="anos de experiência" />
         </CardContainer>
-        <FooterContainer>
+        
           <Button
             label="Editar"
             variant="outline"
             onPress={() => router.push("/cadastro")}
           />
           <Button
-            variant="secondary"
+            variant="primary"
             label="Finalizar"
             onPress={() => router.replace("/sucesso")}
           />
-        </FooterContainer>
+        
       </Container>
     </SafeAreaView>
   );

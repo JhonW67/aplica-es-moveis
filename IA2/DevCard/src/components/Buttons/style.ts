@@ -7,9 +7,9 @@ const stylesPrimary = StyleSheet.create({
         justifyContent: "center",
         alignContent: "center",
         flexDirection: "row",
-        paddingVertical: 14,
+        paddingVertical: 18,
         paddingHorizontal: 24,
-        borderRadius: THEME.border.radius.md
+        borderRadius: THEME.border.radius.md,
     },
     buttonText: {
          color: THEME.colors.primaryForeground,
@@ -31,15 +31,18 @@ const stylesSecondary = StyleSheet.create({
 })
 
 const stylesOutline = StyleSheet.create({
-    buttonContainer: {
+    buttonContainer:{
         ...stylesPrimary.buttonContainer,
-        
-
+        backgroundColor: "transparent",
+        borderColor: THEME.colors.primary,
+        borderWidth: 2,
+        margin: 8
     },
-    buttonText: {
-        ...stylesPrimary.buttonText,
-    }
-})
+    buttonText:{
+       ...stylesPrimary.buttonText,
+       color: THEME.colors.primary,
+    },
+ })
 
 export const styles ={
     primary: stylesPrimary,

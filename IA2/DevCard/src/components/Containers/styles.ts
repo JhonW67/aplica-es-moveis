@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: 60
+        height: 60,
+        marginTop: 32,
     },
     cardContainer: {
         backgroundColor: "#3783f6",
@@ -20,7 +21,7 @@ export const styles = StyleSheet.create({
         padding: 32,
         justifyContent: "center",
         alignItems: "center",
-        gap: 12,
+        marginBottom: 16,
     },
     cardSeparator: {
         backgroundColor: '#ffffff',
